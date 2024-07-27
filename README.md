@@ -2,20 +2,25 @@ Health Metrics Service
 ----------------------
 
 Overview
+---------
 The Health Metrics Service is a spring boot application that will expose a REST API about the history of the application’s health.
 The application should be able to capture the below Disk Usage, and Open file information in configured intervals. 
 It provides a REST API to fetch historical data stored in a PostgreSQL database and is secured using OAuth2 tokens with Keycloak as the Identity Provider (IdP).
 
-Metrics capturing involves the Application's usage data and used Scheduler to capture the data.
-The application acts as Resource Owner and I have tested the Keycloak OAuth2 using the PostMan tool.
-We need to create realms on KeyCloak and clients' and user's along with the roles USER and ADMIN as required.
-I have tested for Client Credentials and Authorization Code grant type with the help of PostMan.
-
 
 High-Level Design
 --------------------
+Metrics capturing involves the Application's cpu, disk usage and open files info. Used Scheduler to capture the data.
+The scheduler captures the data currently for every minute and saves in the database.
 
-Architecture:
+The application acts as Resource Owner and the end points related to metrics retrieval and scheduler stop/start are protected by Keycloak OAuth2 ROLEs mechanism.
+Tested this feature with the help of the PostMan tool.
+We need to create realms on KeyCloak and clients' and user's along with the roles USER and ADMIN as required.
+I have tested for both Client Credentials and Authorization Code grant types with the help of PostMan.
+
+**Softwares/Tools used**
+------------------------
+```
 Spring Boot: Framework for application development and configuration.
 Spring Data JPA: ORM for database interactions.
 PostgreSQL: Database for storing historical metrics data.
@@ -23,23 +28,27 @@ Keycloak: OAuth2 IdP for access and refresh token management.
 Spring Security: For securing API endpoints.
 Spring AOP: For logging, monitoring, and security aspects.
 Springdoc OpenAPI: For generating Swagger documentation.
+```
 
 Key Components:
 ---------------
+```
 Metrics Collection: Captures and stores disk usage, cpu usage and open file information of the Spring Boot Application (for now I gave the process id of the same application).
-REST API: Provides endpoints for fetching historical metrics data.
+REST API: Provides endpoints for fetching historical metrics data and for scheduler stopping/starting. 
 OAuth2 Security: Secures API endpoints using Keycloak.
 Caching: Optimizes performance by caching frequently accessed data.
 Logging and Monitoring: Uses Spring AOP to manage logs and monitor application performance.
+```
 
 Compilation and Running
 --------------------------
-Prerequisites
+**Prerequisites**
+```
 JDK 17 or later
 PostgreSQL
 Keycloak instance
 Maven
-
+```
 
 Folder Structure:
 -----------------
@@ -131,12 +140,11 @@ cd health-metrics-service
 Edit src/main/resources/application.properties to include your PostgreSQL and Keycloak configurations.
 Hardcoded server port as 8081 in properties as KeyCloak is running on 8080.
 
-3.Build the Project
-``` 
+3. Build the Project
+```
 .\mvnw clean package
 ```
-
-4.Run the Application
+4. Run the Application
 ```
 .\mvnw spring-boot:run 
 ```
