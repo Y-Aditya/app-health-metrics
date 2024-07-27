@@ -1,0 +1,55 @@
+---- schema.sql
+--
+---- Drop table if it exists (for clean re-creation)
+--DROP TABLE IF EXISTS health_metrics;
+--
+---- Create the health_metrics table
+--CREATE TABLE health_metrics (
+--    id SERIAL PRIMARY KEY,
+--    timestamp TIMESTAMP NOT NULL,
+--    cpu_usage DOUBLE PRECISION NOT NULL,
+--    disk_usage DOUBLE PRECISION NOT NULL,
+--    open_files INTEGER NOT NULL
+--);
+--
+---- Add indexes
+--CREATE INDEX idx_health_metrics_timestamp ON health_metrics (timestamp);
+--CREATE INDEX idx_health_metrics_cpu_usage ON health_metrics (cpu_usage);
+--CREATE INDEX idx_health_metrics_disk_usage ON health_metrics (disk_usage);
+--CREATE INDEX idx_health_metrics_open_files ON health_metrics (open_files);
+--
+--
+--
+--DROP TABLE IF EXISTS authorities;
+--DROP TABLE IF EXISTS users;
+--
+--
+---- Create users table
+--CREATE TABLE users (
+--    id SERIAL PRIMARY KEY,
+--    username VARCHAR(50) UNIQUE NOT NULL,
+--    password VARCHAR(100) NOT NULL,
+--    enabled BOOLEAN NOT NULL DEFAULT TRUE
+--);
+--
+------ Create roles table
+----CREATE TABLE roles (
+----    id SERIAL PRIMARY KEY,
+----    role_name VARCHAR(50) UNIQUE NOT NULL
+----);
+--
+------ Create user_roles table to link users and roles
+----CREATE TABLE user_roles (
+----    user_id INTEGER REFERENCES users(id),
+----    role_id INTEGER REFERENCES roles(id),
+----    PRIMARY KEY (user_id, role_id)
+----);
+--
+--CREATE TABLE authorities (
+--    username VARCHAR(50) NOT NULL,
+--    authority VARCHAR(50) NOT NULL,
+--    CONSTRAINT fk_authorities_users FOREIGN KEY(username) REFERENCES users(username)
+--);
+--
+--CREATE INDEX ix_auth_username ON authorities (username);
+--

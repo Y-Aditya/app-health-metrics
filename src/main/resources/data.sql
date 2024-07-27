@@ -1,0 +1,18 @@
+---- Insert roles
+----INSERT INTO roles (role_name) VALUES ('ROLE_USER'), ('ROLE_ADMIN');
+--
+---- Insert users
+--INSERT INTO users (username, password, enabled) VALUES
+--('admin', '$2a$10$Hu6sgwjYYhoW7taOAtyWw.8efBwEcV4ZJ5h9GVtM9TXbM/nLoh03S', TRUE),
+--('user', '$2a$10$f64vWSji5Ai8iiw0IpI09e6SUTeHpiR6f2NmYOwOoTySd1s2R6Nh.', TRUE);
+--
+------ Assign roles to users
+----INSERT INTO user_roles (user_id, role_id) VALUES
+----(1, 2), -- admin user with ROLE_ADMIN
+----(2, 1); -- regular user with ROLE_USER
+--
+--INSERT INTO authorities (username, authority) VALUES
+--('admin', 'ADMIN');
+--
+--INSERT INTO authorities (username, authority) VALUES
+--('user', 'USER');
