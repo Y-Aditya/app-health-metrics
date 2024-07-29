@@ -13,7 +13,7 @@ High-Level Design
 Metrics capturing involves the Application's cpu, disk usage and open files info. Used Scheduler to capture the data.
 The scheduler captures the data currently for every minute and saves in the database.
 
-The application acts as Resource Owner and the end points related to metrics retrieval and scheduler stop/start are protected by Keycloak OAuth2 ROLEs mechanism.
+The application acts as Resource Server and the end points related to metrics retrieval and scheduler stop/start are protected by Keycloak OAuth2 ROLEs mechanism.
 Tested this feature with the help of the PostMan tool.
 We need to create realms on KeyCloak and clients' and user's along with the roles USER and ADMIN as required.
 I have tested for both Client Credentials and Authorization Code grant types with the help of PostMan.
